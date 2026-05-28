@@ -4,6 +4,9 @@ import { signToken, COOKIE_NAME, MAX_AGE } from '@/lib/auth';
 export async function POST(req: NextRequest) {
   const { password } = await req.json();
 
+  const APP_PASSWORD = process.env.APP_PASSWORD;
+  if (!APP_PASSWORD) throw new Error("Missing env variable: APP_PASSWORD");
+
   if (password !== process.env.APP_PASSWORD) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }

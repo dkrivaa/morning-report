@@ -37,7 +37,7 @@ export default function LoginPage() {
       router.push('/');
       router.refresh();
     } else {
-      setError('סיסמה שגויה');
+      setError("Wrong password");
       setLoading(false);
     }
   }
