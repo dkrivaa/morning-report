@@ -3,9 +3,9 @@ import { apiStream } from '@/lib/api';
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { type: string } }
+  { params }: { params: Promise<{ type: string }> }
 ) {
-  const { type } = params; // 'income' or 'expense'
+  const { type } = await params; // 'income' or 'expense'
 
   if (!['income', 'expense'].includes(type)) {
     return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
